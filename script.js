@@ -1,5 +1,10 @@
 const display = document.querySelector("#display");
-const buttons = document.querySelector(".buttons");
+const deleteButton = document.querySelector("[data-delete]");
+const clearButton = document.querySelector("[data-clear]");
+const numberButtons = document.querySelectorAll("[data-number]");
+const operatorButtons = document.querySelectorAll("[data-operator]");
+const enterButton = document.querySelector("[data-enter]");
+const decimalButton = document.querySelector("[data-decimal]");
 let num1 = "";
 let num2 = "";
 let operator = "";
@@ -32,16 +37,9 @@ const operate = function (num1, operator, num2) {
   }
 };
 
-let displayValue = "";
-buttons.addEventListener("click", (event) => {
-  //if clear, then set displayValue to ""
-  //if enter, run function that computes
-  //add logic that can take more than single digit num, decimals too
-  //if delete, remove last entered value not whole thing
-  //need to connect these so they are stored as num1, num2, and displayValue
-  //once compute completed, store value as display
-  if (event.target.tagName === "BUTTON") {
-    let buttonValue = event.target.textContent;
-    display.textContent = buttonValue;
-  }
-});
+//if clear, then set displayValue to ""
+//if enter, run function that computes
+//add logic that can take more than single digit num, decimals too
+//if delete, remove last entered value not whole thing
+//need to connect these so they are stored as num1, num2, and displayValue
+//once compute completed, store value as display
