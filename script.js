@@ -1,9 +1,9 @@
 const display = document.querySelector("#display");
-const deleteButton = document.querySelector("[data-delete]");
-const clearButton = document.querySelector("[data-clear]");
+const deleteButton = document.querySelector("#delete");
+const clearButton = document.querySelector("#clear");
 const numberButtons = document.querySelectorAll("[data-number]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
-const enterButton = document.querySelector("[data-enter]");
+const enterButton = document.querySelector("#enter");
 const decimalButton = document.querySelector("[data-decimal]");
 let num1 = "";
 let num2 = "";
@@ -37,9 +37,52 @@ const operate = function (num1, operator, num2) {
   }
 };
 
-//if clear, then set displayValue to ""
-//if enter, run function that computes
-//add logic that can take more than single digit num, decimals too
-//if delete, remove last entered value not whole thing
-//need to connect these so they are stored as num1, num2, and displayValue
-//once compute completed, store value as display
+let currentInput = "";
+numberButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    currentInput += button.textContent;
+    display.textContent = currentInput;
+  });
+});
+
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (currentInput) {
+      num1 = currentInput;
+      operator = button.textContent;
+      currentInput = "";
+    }
+  });
+});
+
+decimalButton.addEventListener("click", () => {
+  if (!currentInput.includes(".")) {
+    currentInput += ".";
+    display.textContent = currentInput;
+  }
+});
+
+deleteButton.addEventListener("click", () => {
+  currentInput = currentInput.slice(0, -1);
+  display.textContent = currentInput;
+});
+
+clearButton.addEventListener("click", () => {
+  currentInput = "";
+  num1 = "";
+  num2 = "";
+  operator = "";
+  display.textContent = currentInput;
+});
+
+enterButton.addEventListener("click", () => {
+  if (num1 !== "" && operator && currentInput !== "") {
+    num2 = currentInput;
+    let result = operate(num1, operator, num2);
+    display.textContent = result;
+
+    currentInput = "";
+    num1 = "";
+    operator = "";
+  }
+});
