@@ -37,6 +37,13 @@ const operate = function (num1, operator, num2) {
   }
 };
 
+let displayValue = "";
+function appendToDisplay(value) {
+  displayValue += value;
+
+}
+
+/*
 let currentInput = "";
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -47,11 +54,8 @@ numberButtons.forEach((button) => {
 
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (currentInput) {
-      num1 = currentInput;
-      operator = button.textContent;
-      currentInput = "";
-    }
+    currentInput += button.textContent;
+    display.textContent = currentInput;
   });
 });
 
@@ -75,14 +79,13 @@ clearButton.addEventListener("click", () => {
   display.textContent = currentInput;
 });
 
-enterButton.addEventListener("click", () => {
-  if (num1 !== "" && operator && currentInput !== "") {
-    num2 = currentInput;
-    let result = operate(num1, operator, num2);
-    display.textContent = result;
+enterButton.addEventListener("click", () => {});
 
-    currentInput = "";
-    num1 = "";
-    operator = "";
-  }
-});
+check display, if it has any of the operators, run that function and update display? How to assign num1 and num2 and operator
+add the onclick to update display on the html. Create a function that will append to display for the html to call.
+Create a function that will set the operator and store num 1
+On the calculate function, let the disolay value be equal to the display value
+case? how to call the calculate function. I should make it into one function so it is easy to call
+need clear function
+need delete function
+
