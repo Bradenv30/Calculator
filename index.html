@@ -9,26 +9,27 @@
   </head>
   <body>
     <div class="calculator">
-      <div id="display"></div>
-      <div id="buttons">
-        <button id="delete" onclick="delete(e)">Delete</button>
-        <button id="clear" onclick="clear(e)">Clear</button>
-        <button onclick="appendToDisplay('7')">7</button>
-        <button onclick="appendToDisplay('8')">8</button>
-        <button onclick="appendToDisplay('9')">9</button>
-        <button onclick="appendToDisplay('/')">/</button>
-        <button onclick="appendToDisplay('6')">6</button>
-        <button onclick="appendToDisplay('5')">5</button>
-        <button onclick="appendToDisplay('4')">4</button>
-        <button onclick="appendToDisplay('x')">x</button>
-        <button onclick="appendToDisplay('3')">3</button>
-        <button onclick="appendToDisplay('2')">2</button>
-        <button onclick="appendToDisplay('1')">1</button>
-        <button onclick="appendToDisplay('-')">-</button>
-        <button onclick="appendToDisplay('.')">.</button>
-        <button onclick="appendToDisplay('0')">0</button>
-        <button onclick="calculate(e)">=</button>
-        <button onclick="appendToDisplay('+')">+</button>
+      <input id="display" readonly />
+        <div id="buttons">
+          <button id="delete" onclick="deleteButton()">Delete</button>
+          <button id="clear" onclick="clearButton()">Clear</button>
+          <button onclick="appendToDisplay('7')">7</button>
+          <button onclick="appendToDisplay('8')">8</button>
+          <button onclick="appendToDisplay('9')">9</button>
+          <button onclick="numOp('/')">/</button>
+          <button onclick="appendToDisplay('6')">6</button>
+          <button onclick="appendToDisplay('5')">5</button>
+          <button onclick="appendToDisplay('4')">4</button>
+          <button onclick="numOp('*')">*</button>
+          <button onclick="appendToDisplay('3')">3</button>
+          <button onclick="appendToDisplay('2')">2</button>
+          <button onclick="appendToDisplay('1')">1</button>
+          <button onclick="numOp('-')">-</button>
+          <button onclick="appendToDisplay('.')">.</button>
+          <button onclick="appendToDisplay('0')">0</button>
+          <button onclick="calculate()">=</button>
+          <button onclick="numOp('+')">+</button>
+        </div>
       </div>
     </div>
   </body>

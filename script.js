@@ -1,91 +1,94 @@
-const display = document.querySelector("#display");
-const deleteButton = document.querySelector("#delete");
-const clearButton = document.querySelector("#clear");
-const numberButtons = document.querySelectorAll("[data-number]");
-const operatorButtons = document.querySelectorAll("[data-operator]");
-const enterButton = document.querySelector("#enter");
-const decimalButton = document.querySelector("[data-decimal]");
+const display = document.getElementById("display");
+
 let num1 = "";
 let num2 = "";
 let operator = "";
 
-const add = function (num1, num2) {
-  return num1 + num2;
-};
-const subtract = function (num1, num2) {
-  return num1 - num2;
-};
-const multiply = function (num1, num2) {
-  return num1 * num2;
-};
-const divide = function (num1, num2) {
-  if (num2 === 0) {
-    return "Cannot divide by zero";
-  }
-  return num1 / num2;
-};
-
-const operate = function (num1, operator, num2) {
-  if (operator === "+") {
-    return add(num1, num2);
-  } else if (operator === "-") {
-    return subtract(num1, num2);
-  } else if (operator === "*") {
-    return multiply(num1, num2);
-  } else if (operator === "/") {
-    return divide(num1, num2);
-  }
-};
-
 let displayValue = "";
-function appendToDisplay(value) {
-  displayValue += value;
-
+function appendToDisplay(input) {
+  if (input === "." && displayValue.includes(".")) {
+    return;
+  }
+  displayValue += input;
+  display.value = displayValue;
 }
 
-/*
-let currentInput = "";
-numberButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    currentInput += button.textContent;
-    display.textContent = currentInput;
-  });
-});
-
-operatorButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    currentInput += button.textContent;
-    display.textContent = currentInput;
-  });
-});
-
-decimalButton.addEventListener("click", () => {
-  if (!currentInput.includes(".")) {
-    currentInput += ".";
-    display.textContent = currentInput;
-  }
-});
-
-deleteButton.addEventListener("click", () => {
-  currentInput = currentInput.slice(0, -1);
-  display.textContent = currentInput;
-});
-
-clearButton.addEventListener("click", () => {
-  currentInput = "";
+function clearButton() {
+  displayValue = "";
   num1 = "";
   num2 = "";
   operator = "";
-  display.textContent = currentInput;
-});
+  display.value = displayValue;
+}
 
-enterButton.addEventListener("click", () => {});
+function deleteButton() {
+  displayValue = displayValue.slice(0, -1);
+  display.value = displayValue;
+}
 
+function numOp(operator) {
+  displayValue = "";
+  num1 = displayValue;
+  operator = operator;
+}
+
+function calculate(num1, operator, num2) {
+  if (operator && num2 !== "") {
+    let result;
+
+    switch (operator) {
+      case "+":
+        result = parseFloat(num1) + parseFloat(num2);
+        break;
+      case "-":
+        result = parseFloat(num1) - parseFloat(num2);
+        break;
+      case "*":
+        result = parseFloat(num1) * parseFloat(num2);
+        break;
+      case "/":
+        if (parseFloat(num2) === 0) {
+          result = "Cannot divide by zero";
+        } else {
+          result = parseFloat(num1) / parseFloat(num2);
+        }
+        break;
+    }
+    if (result !== undefined) {
+      displayValue = result;
+      display.value = displayValue;
+    }
+
+    num1 = "";
+    num2 = "";
+    operator = "";
+  }
+}
+
+/*
 check display, if it has any of the operators, run that function and update display? How to assign num1 and num2 and operator
 add the onclick to update display on the html. Create a function that will append to display for the html to call.
 Create a function that will set the operator and store num 1
 On the calculate function, let the disolay value be equal to the display value
 case? how to call the calculate function. I should make it into one function so it is easy to call
-need clear function
-need delete function
+*/
 
+function add(num1, num2) {
+  return num1 + num2;
+}
+
+function subtract(num1, num2) {
+  return num1 - num2;
+}
+
+function multiply(num1, num2) {
+  return num1 * num2;
+}
+
+function divide(num1, num2) {
+  if (num2 === 0) {
+    return "ERROR";
+  }
+
+  return num1 / num2;
+}
