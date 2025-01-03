@@ -80,7 +80,7 @@ function calculate(num1, operator, num2) {
       result = divide(num1, num2);
     }
   }
-  if (result !== null) {
+  if (result !== undefined) {
     displayValue = result;
     display.value = displayValue;
   }
